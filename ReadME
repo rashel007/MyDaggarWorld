@@ -44,3 +44,11 @@ class Main{
 
 }
 Dagger will create all the necessay parts for the car ,and we dont have to do it. 
+
+
+2. Add Devendency for Dagger 2 in gradle
+  compile 'com.google.dagger:dagger:2.x' // current version 2.23.1
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.x' // current version 2.23.1
+
+
+
