@@ -1,3 +1,46 @@
 DAGGER 2 IN Android? 
 
-1. What is Dependency ?
+1. What is Dependency Injection?
+
+Ans: Suppose class A is dependent on class B,  Then class B is the dependency of class A. 
+
+Like A Car class. Lets think our car needs an engine and a wheet. So lets make the car class
+
+class Car{
+  Engine engine;
+  Wheel wheel;
+  
+  public Car(Engine engine, Wheel wheel){
+    this.engine = engine;
+    this.wheel = wheel;
+  
+  }
+  
+  public void drive(){
+  }
+  
+}
+
+
+So now if we want to make a car in our main method, we have to do it like this. 
+
+class Main{
+
+  Engine engine = new Engine();
+  WHeel wheel = new Wheel();
+  
+  Car car = new Car(engine, wheel);
+  car.drive();
+
+}
+
+now the engine may have other parts dependencies to make, like cylender, block etc. So finally we have to write lots of code.
+But here comes Dagger . We can simply use daggar and then out car object should look like this. 
+
+class Main{
+  CarComponent component = DaggerComponenet.create();
+  Car car = component.getCar();
+  car.drive();
+
+}
+Dagger will create all the necessay parts for the car ,and we dont have to do it. 
