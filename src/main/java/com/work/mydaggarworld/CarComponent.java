@@ -1,8 +1,10 @@
 package com.work.mydaggarworld;
 
+import com.work.mydaggarworld.WheelOutside.WheelsModule;
+
 import dagger.Component;
 
-@Component
+@Component(modules = {WheelsModule.class, PetrolModule.class})
 public interface CarComponent {
 
     Car getCar();

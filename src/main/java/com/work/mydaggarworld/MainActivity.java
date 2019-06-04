@@ -23,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
 //        car = component.getCar();
 
         car.drive();
-        
+
     }
 }

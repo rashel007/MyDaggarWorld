@@ -7,19 +7,24 @@ import javax.inject.Inject;
 public class Car {
     private static final String TAG = "Car";
 
-    private Engine engine;
+    @Inject Engine engine;
     private Wheel wheel;
 
 
     // this is called constructor injection
     @Inject
-    public Car(Engine engine, Wheel wheel) {
-        this.engine = engine;
+    public Car( Wheel wheel) {
         this.wheel = wheel;
+    }
+
+    @Inject
+    public void setListener(Remote remote){
+        remote.setListener(this);
     }
     
     
     public void drive(){
+        engine.start();
         Log.d(TAG, "drive: Driving");
     }
 }

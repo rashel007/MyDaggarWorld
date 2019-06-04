@@ -1,11 +1,7 @@
 package com.work.mydaggarworld;
 
-import javax.inject.Inject;
+interface  Engine {
 
-public class Engine {
+    void start();
 
-    @Inject
-    public Engine(){
-
-    }
 }
