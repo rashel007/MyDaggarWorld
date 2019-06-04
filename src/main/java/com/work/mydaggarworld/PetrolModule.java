@@ -1,14 +1,12 @@
 package com.work.mydaggarworld;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
-public class PetrolModule {
+public abstract class PetrolModule {
 
-    @Provides
-    Engine providePetrolEngine(PetrolEngine engine) {
-        return engine;
-    }
+    @Binds
+    abstract Engine bindsPetrolEngine(PetrolEngine engine);
 
 }

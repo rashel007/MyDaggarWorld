@@ -10,7 +10,7 @@ public class DiselEngine implements Engine {
 
     @Inject
     public DiselEngine(){}
-    
+
 
     @Override
     public void start() {
