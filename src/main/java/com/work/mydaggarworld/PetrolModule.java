@@ -1,12 +1,21 @@
 package com.work.mydaggarworld;
 
-import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 @Module
-public abstract class PetrolModule {
+public class PetrolModule {
 
-    @Binds
-    abstract Engine bindsPetrolEngine(PetrolEngine engine);
+    private int horsePower;
+
+    public PetrolModule(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+
+    @Provides
+    Engine providesPetrolEngine() {
+        return new PetrolEngine(horsePower);
+    }
 
 }

@@ -8,7 +8,6 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity {
 
 
-
     // this is called field injection
     @Inject
     Car car;
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent component = DaggerCarComponent.create();
+        CarComponent component = DaggerCarComponent.builder().petrolModule(new PetrolModule(200)).build();
         component.inject(this);
 //        car = component.getCar();
 
