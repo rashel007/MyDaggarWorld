@@ -1,4 +1,6 @@
-DAGGER 2 IN Android? 
+<!DOCTYPE HTML>
+<html>
+<h1>DAGGER 2 IN Android? </h1>
 
 1. What is Dependency Injection?
 
@@ -58,5 +60,5 @@ Link: https://www.youtube.com/watch?v=xswPPwYPAFM
 => Directed Acyclic Graph. Dagger create a graph in compile time with the annotation processor we declare in our project,
 eg: @Component, @Inject . This graph is called DIrected Acyclic Graph. From this the name Dagger came. 
 
-
+</html>
 
