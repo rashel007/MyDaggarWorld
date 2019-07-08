@@ -61,4 +61,15 @@ eg: @Component, @Inject . This graph is called DIrected Acyclic Graph. From this
 
 *** Must Read https://www.vogella.com/tutorials/Dagger/article.html
 
+---------------------------------------------------------------------------------------------
+
+=>  We Can @Inject in 3 places 
+  1. Constructor
+  2. Fiels
+  3. Methods
+If Contructor Injected then Fields and Methods automatically Injected
+
+* We cant Inject Activity, Thats why for Field injection we have pass a referance to Component of the activity
+ void inject(MainActivity activity);
+
 
