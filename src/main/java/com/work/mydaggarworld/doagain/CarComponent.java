@@ -1,8 +1,10 @@
 package com.work.mydaggarworld.doagain;
 
+
+
 import dagger.Component;
 
-@Component
+@Component(modules = {WheelModule.class, DiselEngineModule.class})
 public interface CarComponent {
 
     // provisioning method
