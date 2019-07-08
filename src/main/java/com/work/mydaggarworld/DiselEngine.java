@@ -2,18 +2,20 @@ package com.work.mydaggarworld;
 
 import android.util.Log;
 
-import javax.inject.Inject;
-
 public class DiselEngine implements Engine {
 
     private static final String TAG = "Car";
 
-    @Inject
-    public DiselEngine(){}
+    private int horsePower;
+
+    public DiselEngine(int horsePower) {
+
+        this.horsePower = horsePower;
+    }
 
 
     @Override
     public void start() {
-        Log.d(TAG, "Disel Engine Started");
+        Log.d(TAG, "Disel Engine Started. horsePower : " + horsePower);
     }
 }
