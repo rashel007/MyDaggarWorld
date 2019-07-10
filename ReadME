@@ -72,4 +72,41 @@ If Contructor Injected then Fields and Methods automatically Injected
 * We cant Inject Activity, Thats why for Field injection we have pass a referance to Component of the activity
  void inject(MainActivity activity);
 
+---------------------------------------------------------------------------------------------------
+=> @Module & @Provides & @Binds: 
+  When we dont own a class, then we cant @inject in that class. For this we need @Module. We need to create a class and put 
+  @Module annotation. Then we can set function to provide the necessary object by adding @Provides annotation 
+
+Ex: 
+@Module
+public class MyModule{
+  @Provides
+  MyObject provideMyOBject(MyObject myObject){
+      return myObject;
+  }
+
+  // we can make this function static if it is not dependent with any other class variable
+  
+  @Provides
+  static MyOBject provideMyObject(MyObject myObject){
+      return myObject
+  }
+}
+
+Alos we can use @Binds if we just need the object
+@Module
+public abstract class MyModule{
+  @Binds
+  abstract MyObject bindMyOBject(MyObject myObject);
+} 
+
+
+
+
+
+
+
+
+
+
 
