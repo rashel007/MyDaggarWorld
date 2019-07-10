@@ -1,12 +1,20 @@
 package com.work.mydaggarworld.doagain;
 
-import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 @Module
-public abstract class DiselEngineModule {
+public class DiselEngineModule {
+
+    int horsePower;
+
+    public DiselEngineModule(int horsePower) {
+        this.horsePower = horsePower;
+    }
 
     // if we want just the implementation part , then we should use @Binds
-    @Binds
-    abstract Engine bindsEngine(DiselEngine engine);
+    @Provides
+    Engine bindsEngine() {
+        return new DiselEngine(horsePower);
+    }
 }

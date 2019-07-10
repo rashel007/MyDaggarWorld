@@ -21,7 +21,7 @@ public class DaggerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent carComponent = DaggerCarComponent.create();
+        CarComponent carComponent = DaggerCarComponent.builder().diselEngineModule(new DiselEngineModule(100)).build();
 //        car = carComponent.getCar(); we can also get the car inctance by Field Injection
 
         carComponent.injectCar(this);
