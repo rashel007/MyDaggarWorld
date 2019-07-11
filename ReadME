@@ -147,6 +147,59 @@ And in the MainActivity  we have to initialize DaggerComponent like this
 
 DaggerCarComponent.builder().diselEngineModule(new DiselEngineModule(100)).build();
 
+ALso we can achive this in more conveninent way.  for this we have to create are own Component Builder interface
+
+@Component(modules = MyClassModule) 
+public interface MyComponent{
+  
+  @Component.Builder
+  interface Builder{
+    
+    @BindsInstance
+    Builder value(int value);
+    
+    MyCOmponent build();
+  
+  
+  }
+  
+}
+
+and declare dagger like this
+
+DaggerCarComponent.builder().value(100).build();
+
+But if we have different int value in MyClass . then dagger dont know which value is which. Then we have to use @Named annotation
+
+@Component(modules = @MyCLassModule)
+public interface MyCOmponent{
+  
+  @Component.Builder
+  public Builder{
+    
+    @BindsInstance
+    Builder valueOne(@Named("value one") int value);
+    
+    @BindsInstance
+    Builder valueTwo(@Named("value tow") int valueTwo);
+    
+    MyComponent build();
+  
+  }
+
+}
+
+and in dagger instance 
+
+DaggerCarComponent.builder().valueOne(100).valueTwo(200).build();
+
+and in MyCLass class we have to initialize the constructor like this
+
+public MyClass(@Named("value one") int valueOne, @Named("value tow") int valueTwo){
+    this.valueOne = valueOne;
+    this.valueTwo = valueTow;
+}
+
 
 
 
