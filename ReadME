@@ -200,7 +200,11 @@ public MyClass(@Named("value one") int valueOne, @Named("value tow") int valueTw
     this.valueTwo = valueTow;
 }
 
+--------------------------------------------------------
 
+@BINDS vs @PROVIDES 
+
+https://medium.com/@elye.project/dagger-2-binds-vs-provides-cbf3c10511b5
 
 
 
