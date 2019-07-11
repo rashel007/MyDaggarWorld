@@ -100,6 +100,56 @@ public abstract class MyModule{
   abstract MyObject bindMyOBject(MyObject myObject);
 } 
 
+-----------------------------------------------------------------------------
+
+PASSING VALUES AT RUNTIME
+
+IF we want to pass value we can do this:
+
+class MyClass{
+
+  int value;
+  
+  public MyClass(int value){
+    this.value = valjue;
+  }
+  
+}
+
+in the MyClassModule we have to do like this
+
+@Module
+class MyClassModule{
+  privaye int value;
+  
+  public MyClassModule(int value){
+    this.value = value
+  }
+  
+  @Provides
+  MyClass provideMyClass(){
+      return new MyClass(value);
+  }
+
+}
+  // or we can do this with providing the value. then we need to change/add below code in module
+  @Provides
+  int provideValue(){
+      return value
+  }
+
+  @Provides
+  MyClass provideMyCLass(MyClass myclass){
+      return myclass;
+  }
+
+And in the MainActivity  we have to initialize DaggerComponent like this
+
+DaggerCarComponent.builder().diselEngineModule(new DiselEngineModule(100)).build();
+
+
+
+
 
 
 
