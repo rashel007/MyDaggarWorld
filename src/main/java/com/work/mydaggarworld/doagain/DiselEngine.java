@@ -2,6 +2,8 @@ package com.work.mydaggarworld.doagain;
 
 import android.util.Log;
 
+import javax.inject.Inject;
+
 public class DiselEngine implements Engine {
 
     private static final String TAG = "Car";
@@ -9,6 +11,7 @@ public class DiselEngine implements Engine {
     private int horsePower;
 
 
+    @Inject
     public DiselEngine(int horsePower) {
         this.horsePower = horsePower;
     }

@@ -12,9 +12,14 @@ public class DiselEngineModule {
         this.horsePower = horsePower;
     }
 
+    @Provides
+    int providesHorsePower(){
+        return horsePower;
+    }
+
     // if we want just the implementation part , then we should use @Binds
     @Provides
-    Engine bindsEngine() {
-        return new DiselEngine(horsePower);
+    Engine bindsEngine(DiselEngine diselEngine) {
+        return diselEngine;
     }
 }
