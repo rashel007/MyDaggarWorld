@@ -14,7 +14,7 @@ public class DaggerMainActivity extends AppCompatActivity {
 //    to inject variable or field we cant declare the field private.
     // but this will throw a null point exception. to inject field we need to pass this activity in dagger component
     @Inject
-    Car car;
+    Car car1, car2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,7 +27,8 @@ public class DaggerMainActivity extends AppCompatActivity {
         CarComponent carComponent = DaggerCarComponent.builder().horsePower(100).engineCapacity(1200).buildMe();
         carComponent.injectCar(this);
 
-        car.drive();
+        car1.drive();
+        car2.drive();
     }
 
 
