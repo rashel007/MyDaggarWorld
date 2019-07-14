@@ -3,10 +3,12 @@ package com.work.mydaggarworld.doagain;
 
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 
+@Singleton
 @Component(modules = {WheelModule.class,  PetrolEngineModule.class})
 public interface CarComponent {
 
