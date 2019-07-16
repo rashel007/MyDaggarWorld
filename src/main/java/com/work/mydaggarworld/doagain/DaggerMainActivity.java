@@ -24,7 +24,7 @@ public class DaggerMainActivity extends AppCompatActivity {
 //        CarComponent carComponent = DaggerCarComponent.builder().diselEngineModule(new DiselEngineModule(100)).build();
 //        car = carComponent.getCar(); we can also get the car inctance by Field Injection
 
-        CarComponent carComponent = DaggerCarComponent.builder().horsePower(100).engineCapacity(1200).buildMe();
+        CarComponent carComponent = ((MyExampleApp) getApplication()).getCarComponent();
         carComponent.injectCar(this);
 
         car1.drive();
