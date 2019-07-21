@@ -5,18 +5,18 @@ import android.app.Application;
 public class MyExampleApp extends Application {
 
 
-    CarComponent carComponent;
+    AppComponent appComponent;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        carComponent = DaggerCarComponent.builder().horsePower(150).engineCapacity(1400).buildMe();
+        appComponent = DaggerAppComponent.builder().build();
     }
 
 
-    public CarComponent getCarComponent() {
-        return carComponent;
+    public AppComponent getActivityComponent() {
+        return appComponent;
     }
 }

@@ -4,9 +4,10 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
+@PerActivity
 public class Car {
 
-    private static final String TAG = "Car";
+    private static final String TAG = "CarLog";
 
     private Engine engine;
     private Wheel wheel;
