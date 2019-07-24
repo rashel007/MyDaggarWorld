@@ -1,5 +1,6 @@
 package com.work.mydaggarworld.doagain.GOT;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +9,14 @@ import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
 import com.work.mydaggarworld.R;
 import com.work.mydaggarworld.doagain.GOT.adapter.RandomUserAdapter;
+import com.work.mydaggarworld.doagain.GOT.component.DaggerRandomUserComponent;
+import com.work.mydaggarworld.doagain.GOT.component.RandomUserComponent;
 import com.work.mydaggarworld.doagain.GOT.interfaces.RandomUsersApi;
 import com.work.mydaggarworld.doagain.GOT.model.RandomUsers;
+import com.work.mydaggarworld.doagain.GOT.module.ContextModule;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -28,12 +33,37 @@ public class GOTActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RandomUserAdapter mAdapter;
 
+
+    Context context;
+    Picasso picasso;
+
+    RandomUsersApi randomUsersApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_got);
+
+        context = this;
+
         initViews();
 
+
+//        beforeDagger();
+        afterDagger();
+
+        populateUsers();
+
+
+    }
+
+    private void afterDagger() {
+        RandomUserComponent component = DaggerRandomUserComponent.builder().contextModule(new ContextModule(this)).build();
+        picasso = component.getPicasso();
+        randomUsersApi = component.getRandomUsersApi();
+    }
+
+    private void beforeDagger() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
 
@@ -59,9 +89,6 @@ public class GOTActivity extends AppCompatActivity {
                 .baseUrl("https://randomuser.me/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
-        populateUsers();
-
     }
 
     private void initViews() {
@@ -70,11 +97,11 @@ public class GOTActivity extends AppCompatActivity {
     }
 
     private void populateUsers() {
-        Call<RandomUsers> randomUsersCall = getRandomUserService().getRandomUsers(10);
+        Call<RandomUsers> randomUsersCall = randomUsersApi.getRandomUsers(10);
         randomUsersCall.enqueue(new Callback<RandomUsers>() {
             @Override
             public void onResponse(Call<RandomUsers> call, @NonNull Response<RandomUsers> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     mAdapter = new RandomUserAdapter();
                     mAdapter.setItems(response.body().getResults());
                     recyclerView.setAdapter(mAdapter);
@@ -88,7 +115,7 @@ public class GOTActivity extends AppCompatActivity {
         });
     }
 
-    public RandomUsersApi getRandomUserService(){
+    public RandomUsersApi getRandomUserService() {
         return retrofit.create(RandomUsersApi.class);
     }
 
