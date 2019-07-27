@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+import com.work.mydaggarworld.doagain.GOT.CustomAnnotation.RandomUserApplicationScope;
+import com.work.mydaggarworld.doagain.GOT.interfaces.ApplicationContext;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,8 +15,9 @@ import okhttp3.OkHttpClient;
 @Module(includes = OkHttpClientModule.class)
 public class PicassoModule {
 
+    @RandomUserApplicationScope
     @Provides
-    public Picasso picasso(Context context, OkHttp3Downloader okHttpDownloader) {
+    public Picasso picasso(@ApplicationContext Context context, OkHttp3Downloader okHttpDownloader) {
         return new Picasso.Builder(context).downloader(okHttpDownloader).build();
     }
 

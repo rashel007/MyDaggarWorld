@@ -3,6 +3,7 @@ package com.work.mydaggarworld.doagain.GOT.module;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.work.mydaggarworld.doagain.GOT.CustomAnnotation.RandomUserApplicationScope;
 import com.work.mydaggarworld.doagain.GOT.interfaces.RandomUsersApi;
 
 import dagger.Module;
@@ -20,6 +21,7 @@ public class RandomUsersModule {
         return retrofit.create(RandomUsersApi.class);
     }
 
+    @RandomUserApplicationScope
     @Provides
     public Retrofit getRetrofit(OkHttpClient okHttpClient, GsonConverterFactory gsonConverterFactory) {
 

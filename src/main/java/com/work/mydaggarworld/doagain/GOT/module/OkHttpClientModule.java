@@ -2,6 +2,8 @@ package com.work.mydaggarworld.doagain.GOT.module;
 
 import android.content.Context;
 
+import com.work.mydaggarworld.doagain.GOT.interfaces.ApplicationContext;
+
 import java.io.File;
 
 import dagger.Module;
@@ -29,7 +31,7 @@ public class OkHttpClientModule {
     }
 
     @Provides
-    public File file(Context context) {
+    public File file(@ApplicationContext Context context) {
         File file = new File(context.getCacheDir(), "HttpCache");
         file.mkdirs();
         return file;

@@ -4,24 +4,25 @@ package com.work.mydaggarworld.doagain.GOT.module;
 import android.content.Context;
 
 import com.work.mydaggarworld.doagain.GOT.CustomAnnotation.RandomUserApplicationScope;
-import com.work.mydaggarworld.doagain.GOT.interfaces.ApplicationContext;
+
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ContextModule {
+public class ActivityModule {
 
     Context context;
 
-    public ContextModule(Context context) {
+    public ActivityModule(Context context) {
         this.context = context;
     }
 
-    @ApplicationContext
+    @Named("activity_context")
     @RandomUserApplicationScope
     @Provides
-    public Context getContext() {
-        return context.getApplicationContext();
+    Context getContext() {
+        return context;
     }
 }

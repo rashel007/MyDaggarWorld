@@ -18,6 +18,8 @@ import com.work.mydaggarworld.doagain.GOT.interfaces.RandomUsersApi;
 import com.work.mydaggarworld.doagain.GOT.model.RandomUsers;
 import com.work.mydaggarworld.doagain.GOT.module.ContextModule;
 
+import javax.inject.Inject;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -35,8 +37,11 @@ public class GOTActivity extends AppCompatActivity {
 
 
     Context context;
+
+    @Inject
     Picasso picasso;
 
+    @Inject
     RandomUsersApi randomUsersApi;
 
     @Override
@@ -59,8 +64,9 @@ public class GOTActivity extends AppCompatActivity {
 
     private void afterDagger() {
         RandomUserComponent component = DaggerRandomUserComponent.builder().contextModule(new ContextModule(this)).build();
-        picasso = component.getPicasso();
-        randomUsersApi = component.getRandomUsersApi();
+
+        component.injectMainActivity(this);
+
     }
 
     private void beforeDagger() {
